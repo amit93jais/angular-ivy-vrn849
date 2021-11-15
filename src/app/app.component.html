@@ -1,4 +1,104 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<div class="container-fluid">
+  <h1>Candidates</h1>
+  <!-- <form [formGroup]="candidateSearchForm"> -->
+  <div class="row">
+    <div class="col-6">
+      <select class="form-group" [(ngModel)]="gender">
+        <option></option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <!-- <input
+        type="checkbox"
+        class="form-group"
+        [checked]="gender == 'female' || gender == ''"
+      />Female <input type="checkbox" [checked]="true" class="form-group" />Male-->
+    </div>
+    <div class="col-6">
+      <input
+        class="form-group"
+        type="text"
+        [(ngModel)]="searchQuery"
+        placeholder="What are u looking for?"
+      />
+    </div>
+  </div>
+
+  <!--   </form> -->
+
+  <table>
+    <th>#</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <tbody>
+      <tr
+        *ngFor="
+          let c of candidates | genderFilter: gender | queryFilter: searchQuery
+        "
+      >
+        <td>{{ c.id }}</td>
+        <td>{{ c.first_name }}</td>
+        <td>{{ c.last_name }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.gender }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h1>Add New Candidate</h1>
+  <form [formGroup]="candidateForm" (onSubmit)="saveCandidate()">
+    <div class="row">
+      <div class="col-6">
+        <input
+          type="text"
+          formControlName="fName"
+          name="fName"
+          placeholder="first Name"
+        />
+      </div>
+
+      <div class="col-6">
+        <input
+          type="text"
+          formControlName="lName"
+          name="lName"
+          placeholder="Last Name"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <input
+          type="text"
+          formControlName="email"
+          name="email"
+          placeholder="Email"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <input
+          type="radio"
+          formControlName="gender"
+          name="gender"
+          value="Female"
+        />Female
+        <input
+          type="radio"
+          formControlName="gender"
+          name="gender"
+          value="Male"
+        />Male
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="saveCandidate()">
+      Add
+    </button>
+  </form>
+</div>

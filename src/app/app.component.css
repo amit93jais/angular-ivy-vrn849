@@ -1,3 +1,39 @@
-p {
-  font-family: Lato;
+table,
+th,
+td {
+  border: 0.5px solid grey;
+  border-spacing: 5px;
+  border-color: #eee;
+  padding: 10px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+table tr:nth-child(even) {
+  background-color: #eee;
+}
+
+table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.btn-success {
+  background-color: green;
+  margin: 15px;
+}
+
+.row {
+  margin-top: 15px;
+  display: inline-flex;
+  width: 100%;
+}
+
+.col-12 {
+  width: 100%;
+  margin-left: 10px;
+}
+
+.col-6 {
+  width: 50%;
+  margin-left: 10px;
 }
